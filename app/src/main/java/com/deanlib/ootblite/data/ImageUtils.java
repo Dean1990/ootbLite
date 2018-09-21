@@ -47,7 +47,8 @@ public class ImageUtils {
 
                     return file;
                 } catch (Exception e) {
-                    cb.onFail(e);
+                    if (cb!=null)
+                        cb.onFail(e);
                     e.printStackTrace();
 
                 } finally {
@@ -58,7 +59,8 @@ public class ImageUtils {
                             fos = null;
                         }
                     } catch (IOException e) {
-                        cb.onFail(e);
+                        if (cb!=null)
+                            cb.onFail(e);
                         e.printStackTrace();
                     }
                 }
@@ -70,7 +72,8 @@ public class ImageUtils {
                     DLog.e("save image failed");
                 } else {
                     DLog.i("image file：" + file.getAbsolutePath());
-                    cb.onSuccess(file);
+                    if (cb!=null)
+                        cb.onSuccess(file);
                 }
             }
 
