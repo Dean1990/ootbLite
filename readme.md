@@ -77,6 +77,10 @@ dependencies {
     //RxBinding https://github.com/JakeWharton/RxBinding
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
     
+    //下载器
+    //FileDownloader https://github.com/lingochamp/FileDownloader
+    implementation 'com.liulishuo.filedownloader:library:1.7.5'
+    
     //内存检测
     //leakcanary https://github.com/square/leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
