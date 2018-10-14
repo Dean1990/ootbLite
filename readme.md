@@ -141,6 +141,12 @@ dependencies {
     //TextPathView https://github.com/totond/TextPathView
     implementation 'com.yanzhikai:TextPathView:0.1.3'
     
+    //文件选择器
+    //AndroidPicker https://github.com/gzu-liyujiang/AndroidPicker
+    implementation('com.github.gzu-liyujiang.AndroidPicker:FilePicker:1.5.6') {
+        exclude group: 'com.android.support'
+    }
+    
 }
 ```
 
