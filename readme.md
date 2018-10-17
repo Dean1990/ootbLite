@@ -147,6 +147,10 @@ dependencies {
         exclude group: 'com.android.support'
     }
     
+    //图片，视频选择器
+    //RxGalleryFinal https://github.com/FinalTeam/RxGalleryFinal
+    implementation 'cn.finalteam.rxgalleryfinal:library:1.1.3'
+    
 }
 ```
 
