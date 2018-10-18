@@ -1,6 +1,6 @@
 package com.deanlib.ootblite.data.io.thanksxutils.cache;
 
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.common.util.ProcessLock;
 
 import java.io.Closeable;

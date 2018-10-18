@@ -15,7 +15,7 @@ import com.deanlib.ootblite.data.io.thanksxutils.http.body.ProgressBody;
 import com.deanlib.ootblite.data.io.thanksxutils.http.body.RequestBody;
 import com.deanlib.ootblite.data.io.thanksxutils.http.cookie.DbCookieStore;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

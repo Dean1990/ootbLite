@@ -9,7 +9,7 @@ import com.deanlib.ootblite.data.io.thanksxutils.http.annotation.HttpResponse;
 import com.deanlib.ootblite.data.io.thanksxutils.http.app.InputStreamResponseParser;
 import com.deanlib.ootblite.data.io.thanksxutils.http.app.ResponseParser;
 import com.deanlib.ootblite.data.io.thanksxutils.http.request.UriRequest;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;

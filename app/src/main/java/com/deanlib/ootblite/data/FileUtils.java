@@ -2,6 +2,7 @@ package com.deanlib.ootblite.data;
 
 import android.annotation.TargetApi;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
@@ -35,7 +36,7 @@ import java.util.Date;
 /**
  * 文件相关
  * 所有编码为 utf-8
- *
+ * <p>
  * Created by dean on 2017/4/24.
  */
 
@@ -45,10 +46,11 @@ public class FileUtils {
 
     /**
      * 获取Asset文件夹下的文本
+     *
      * @param assetFielPath
      * @return
      */
-    public static String getAssetText(String assetFielPath){
+    public static String getAssetText(String assetFielPath) {
         InputStream is = null;
         try {
             is = OotbConfig.app().getResources().getAssets().open(assetFielPath);
@@ -62,6 +64,7 @@ public class FileUtils {
 
     /**
      * 输入流转字符串
+     *
      * @param is
      * @return
      * @throws IOException
@@ -72,7 +75,7 @@ public class FileUtils {
 
         char[] buffer = new char[2048];
         try {
-            Reader reader = new BufferedReader(new InputStreamReader(is,ENCODING));
+            Reader reader = new BufferedReader(new InputStreamReader(is, ENCODING));
             int n;
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
@@ -86,6 +89,7 @@ public class FileUtils {
 
     /**
      * 获取应用缓存总大小
+     *
      * @return
      * @throws Exception
      */
@@ -110,9 +114,10 @@ public class FileUtils {
 
     /**
      * 获取文件或者文件夹大小
-     *
+     * <p>
      * Context.getExternalFilesDir() --> SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
      * Context.getExternalCacheDir() --> SDCard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据
+     *
      * @param file
      * @return
      * @throws Exception
@@ -144,6 +149,7 @@ public class FileUtils {
 
     /**
      * 创建目录 在外部存储目录 一般为/sdcard/
+     *
      * @param name
      * @return
      */
@@ -158,6 +164,7 @@ public class FileUtils {
 
     /**
      * 删除目录
+     *
      * @param dir
      * @return
      */
@@ -180,18 +187,20 @@ public class FileUtils {
      */
     public interface FileCallback {
         void onSuccess(File file);
+
         void onFail(Exception e);
     }
 
     /**
      * 创建临时文件
+     *
      * @param name
      * @param prefix
      * @return
      */
-    public static File createTempFile(String name, String prefix){
+    public static File createTempFile(String name, String prefix) {
 
-        if(TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(name)) {
 
             name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
@@ -218,6 +227,7 @@ public class FileUtils {
 
     /**
      * 复制文件，使用FileChannels类
+     *
      * @param source
      * @param dest
      */
@@ -254,8 +264,8 @@ public class FileUtils {
      * represents a local file.
      *
      * @param uri The Uri to query.
-     * @see #isLocal(String)
      * @author paulburke
+     * @see #isLocal(String)
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static String getPath(final Uri uri) {
@@ -281,7 +291,7 @@ public class FileUtils {
 //            }
             // ExternalStorageProvider
 //            else
-                if (isExternalStorageDocument(uri)) {
+            if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
                 final String type = split[0];
@@ -317,7 +327,7 @@ public class FileUtils {
                 }
 
                 final String selection = "_id=?";
-                final String[] selectionArgs = new String[] {
+                final String[] selectionArgs = new String[]{
                         split[1]
                 };
 
@@ -364,7 +374,7 @@ public class FileUtils {
      *
      * @param uri
      * @return Extension including the dot("."); "" if there is no extension;
-     *         null if uri was null.
+     * null if uri was null.
      */
     public static String getExtension(String uri) {
         if (uri == null) {
@@ -511,8 +521,8 @@ public class FileUtils {
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param uri The Uri to query.
-     * @param selection (Optional) Filter used in the query.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
      * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      * @author paulburke
@@ -557,6 +567,21 @@ public class FileUtils {
         return availableBlocks * blockSize;
         // (availableBlocks * blockSize)/1024 KIB 单位
         // (availableBlocks * blockSize)/1024 /1024 MIB单位
+    }
+
+    /**
+     * 获取cache路径
+     *
+     * @return
+     */
+    public static String getDiskCachePath() {
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            if (OotbConfig.app().getExternalCacheDir() != null)
+                return OotbConfig.app().getExternalCacheDir().getPath();
+        }
+        return OotbConfig.app().getCacheDir().getPath();
+
     }
 
 }

@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import com.deanlib.ootblite.OotbConfig;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.Closeable;
 import java.io.File;

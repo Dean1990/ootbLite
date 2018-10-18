@@ -23,7 +23,7 @@ import android.os.Build;
 import com.deanlib.ootblite.OotbConfig;
 import com.deanlib.ootblite.data.io.thanksxutils.DbManager;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.common.util.KeyValue;
 import com.deanlib.ootblite.data.io.thanksxutils.db.sqlite.SqlInfo;
 import com.deanlib.ootblite.data.io.thanksxutils.db.sqlite.SqlInfoBuilder;

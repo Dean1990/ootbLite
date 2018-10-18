@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import com.deanlib.ootblite.data.io.thanksxutils.cache.DiskCacheEntity;
 import com.deanlib.ootblite.data.io.thanksxutils.http.RequestParams;
 import com.deanlib.ootblite.data.io.thanksxutils.http.request.UriRequest;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.InputStream;
 

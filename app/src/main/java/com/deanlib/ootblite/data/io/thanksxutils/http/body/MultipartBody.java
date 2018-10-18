@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import com.deanlib.ootblite.data.io.thanksxutils.common.Callback;
 import com.deanlib.ootblite.data.io.thanksxutils.http.ProgressHandler;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.common.util.KeyValue;
 
 import java.io.File;

@@ -18,7 +18,7 @@ package com.deanlib.ootblite.data.io.thanksxutils.db;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.db.sqlite.WhereBuilder;
 import com.deanlib.ootblite.data.io.thanksxutils.db.table.DbModel;
 import com.deanlib.ootblite.data.io.thanksxutils.db.table.TableEntity;

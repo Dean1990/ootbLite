@@ -1,4 +1,4 @@
-package com.deanlib.ootblite.utils;
+package com.deanlib.ootblite.data;
 
 import android.database.Cursor;
 import android.text.TextUtils;

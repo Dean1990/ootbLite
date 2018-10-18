@@ -17,7 +17,7 @@ import com.deanlib.ootblite.data.io.thanksxutils.http.app.RequestTracker;
 import com.deanlib.ootblite.data.io.thanksxutils.http.request.UriRequest;
 import com.deanlib.ootblite.data.io.thanksxutils.http.request.UriRequestFactory;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.Closeable;
 import java.io.File;

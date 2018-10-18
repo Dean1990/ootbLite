@@ -12,7 +12,7 @@ import com.deanlib.ootblite.data.io.thanksxutils.ex.HttpException;
 import com.deanlib.ootblite.data.io.thanksxutils.http.RequestParams;
 import com.deanlib.ootblite.data.io.thanksxutils.http.request.UriRequest;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

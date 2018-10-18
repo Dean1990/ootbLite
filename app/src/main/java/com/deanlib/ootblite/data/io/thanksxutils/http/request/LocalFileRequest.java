@@ -2,7 +2,7 @@ package com.deanlib.ootblite.data.io.thanksxutils.http.request;
 
 import com.deanlib.ootblite.data.io.thanksxutils.http.RequestParams;
 import com.deanlib.ootblite.data.io.thanksxutils.http.loader.FileLoader;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -18,7 +18,7 @@ package com.deanlib.ootblite.data.io.thanksxutils.db.table;
 import android.database.Cursor;
 
 import com.deanlib.ootblite.data.io.thanksxutils.DbManager;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.db.annotation.Table;
 import com.deanlib.ootblite.data.io.thanksxutils.ex.DbException;
 

@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 import com.deanlib.ootblite.data.io.thanksxutils.DbManager;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.db.sqlite.SqlInfo;
 import com.deanlib.ootblite.data.io.thanksxutils.db.sqlite.SqlInfoBuilder;
 import com.deanlib.ootblite.data.io.thanksxutils.ex.DbException;

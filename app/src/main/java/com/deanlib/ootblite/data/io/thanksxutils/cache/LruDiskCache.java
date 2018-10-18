@@ -9,7 +9,7 @@ import com.deanlib.ootblite.data.io.thanksxutils.DbManager;
 import com.deanlib.ootblite.data.io.thanksxutils.common.DbConfigs;
 import com.deanlib.ootblite.data.io.thanksxutils.common.task.PriorityExecutor;
 import com.deanlib.ootblite.utils.DLog;
-import com.deanlib.ootblite.utils.IOUtils;
+import com.deanlib.ootblite.data.IOUtils;
 import com.deanlib.ootblite.data.io.thanksxutils.common.util.ProcessLock;
 import com.deanlib.ootblite.data.io.thanksxutils.db.sqlite.WhereBuilder;
 import com.deanlib.ootblite.data.io.thanksxutils.ex.DbException;

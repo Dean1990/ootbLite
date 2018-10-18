@@ -3,7 +3,10 @@ package com.deanlib.ootblite.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Parcelable;
+import android.provider.Settings;
+import android.support.v4.content.FileProvider;
 
 import com.deanlib.ootblite.OotbConfig;
 import com.deanlib.ootblite.R;
@@ -16,6 +19,8 @@ import com.deanlib.ootblite.R;
  * @time 2018/6/28 下午3:29
  */
 public class AppUtils {
+
+    public static final int REQ_CODE_UNKNOWN_APP_SOURCES = 5100;
 
     /**
      * 打电话
@@ -108,6 +113,38 @@ public class AppUtils {
                 new Intent(act.getApplicationContext(), act.getClass()));
         // 发送广播
         act.sendBroadcast(shortcutintent);
+    }
+
+    /**
+     * 安装APK
+     * @param activity
+     * @param uri
+     * android 7.0 以下 可以使用 Uri.fromFile(file) 得到uri
+     * android 7.0及以上，需要配置 provider (自行百度) ，使用 FileProvider.getUriForFile(context, "provider的authorities", file)
+     */
+    public static void installApk(Activity activity,Uri uri){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            // 7.0+以上版本
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 打开设置中的未知来源安装（android 8.0及以上）
+     *
+     * getPackageManager().canRequestPackageInstalls() 判断该设置是否打开
+     * 如果设置被打开，返回时则会触发 onActivityResult ，否则不触发
+     *
+     */
+    public static void openSettingsUnknownAppSources(Activity activity){
+        Uri packageURI = Uri.parse("package:"+OotbConfig.app().getPackageName());//设置包名，可直接跳转当前软件的设置页面
+        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
+        activity.startActivityForResult(intent, REQ_CODE_UNKNOWN_APP_SOURCES);
     }
 
 }
