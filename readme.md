@@ -151,6 +151,10 @@ dependencies {
     //RxGalleryFinal https://github.com/FinalTeam/RxGalleryFinal
     implementation 'cn.finalteam.rxgalleryfinal:library:1.1.3'
     
+    //日历选择器，可单选日期，可选时间段 https://github.com/richzjc/calendar_select
+    implementation 'com.richzjc:calendar_select:1.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'//需要recyclerview
+    
 }
 ```
 
