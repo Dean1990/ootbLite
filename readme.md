@@ -19,7 +19,7 @@ Module build.gradle
 
 ```groovy
 dependencies {
-	implementation 'com.github.Dean1990:ootbLite:-SNAPSHOT'
+	implementation 'com.github.Dean1990:OotbLite:-SNAPSHOT'
 }
 ```
 
