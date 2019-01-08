@@ -46,13 +46,13 @@ public class AppUtils {
         activity.startActivity(intent);
     }
 
-    private long exitTime;
+    private static long exitTime;
 
-    private boolean exit(){
+    public static boolean exit(){
         return exit(OotbConfig.app().getString(R.string.ootb_again_exit));
     }
 
-    private boolean exit(String msg){
+    public static boolean exit(String msg){
         return exit(msg,2000);
     }
 
@@ -62,7 +62,7 @@ public class AppUtils {
      * @param interval
      * @return
      */
-    private boolean exit(String msg, long interval){
+    public static boolean exit(String msg, long interval){
         if(System.currentTimeMillis()-exitTime>interval) {
             PopupUtils.sendToast(msg);
             exitTime= System.currentTimeMillis();
