@@ -15,7 +15,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
+//import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
@@ -198,14 +198,18 @@ public class FileUtils {
         void onFail(Exception e);
     }
 
+    public static File createTempFile(String suffix){
+        return createTempFile(new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()),suffix);
+    }
+
     /**
      * 创建临时文件
      *
      * @param name
-     * @param prefix
+     * @param suffix
      * @return
      */
-    public static File createTempFile(String name, String prefix) {
+    public static File createTempFile(String name, String suffix) {
 
         if (TextUtils.isEmpty(name)) {
 
@@ -216,7 +220,7 @@ public class FileUtils {
         File image = null;
         try {
             image = File.createTempFile(name,  /* prefix */
-                    prefix     /* directory */
+                    suffix     /* directory */
             );
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -238,25 +242,29 @@ public class FileUtils {
      * @param source
      * @param dest
      */
-    public static void copyFileUsingFileChannels(File source, File dest) {
+    public static boolean copyFileUsingFileChannels(File source, File dest) {
         FileChannel inputChannel = null;
         FileChannel outputChannel = null;
         try {
             try {
+                if (!dest.getParentFile().exists()){
+                    dest.getParentFile().mkdirs();
+                }
                 inputChannel = new FileInputStream(source).getChannel();
                 outputChannel = new FileOutputStream(dest).getChannel();
                 outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
+                return false;
             }
         } finally {
             try {
                 inputChannel.close();
                 outputChannel.close();
+                return true;
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
+                return false;
             }
         }
     }
@@ -591,58 +599,58 @@ public class FileUtils {
 
     }
 
-    /**
-     * 获取FileProvider path
-     * fileprovider 转 file 绝对路径
-     */
-    private static String getFPUriToPath(Uri uri) {
-        try {
-            List<PackageInfo> packs = OotbConfig.app().getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS);
-            if (packs != null) {
-                String fileProviderClassName = FileProvider.class.getName();
-                for (PackageInfo pack : packs) {
-                    ProviderInfo[] providers = pack.providers;
-                    if (providers != null) {
-                        for (ProviderInfo provider : providers) {
-                            if (uri.getAuthority().equals(provider.authority)) {
-                                if (provider.name.equalsIgnoreCase(fileProviderClassName)) {
-                                    Class<FileProvider> fileProviderClass = FileProvider.class;
-                                    try {
-                                        Method getPathStrategy = fileProviderClass.getDeclaredMethod("getPathStrategy", Context.class, String.class);
-                                        getPathStrategy.setAccessible(true);
-                                        Object invoke = getPathStrategy.invoke(null, OotbConfig.app(), uri.getAuthority());
-                                        if (invoke != null) {
-                                            String PathStrategyStringClass = FileProvider.class.getName() + "$PathStrategy";
-                                            Class<?> PathStrategy = Class.forName(PathStrategyStringClass);
-                                            Method getFileForUri = PathStrategy.getDeclaredMethod("getFileForUri", Uri.class);
-                                            getFileForUri.setAccessible(true);
-                                            Object invoke1 = getFileForUri.invoke(invoke, uri);
-                                            if (invoke1 instanceof File) {
-                                                String filePath = ((File) invoke1).getAbsolutePath();
-                                                return filePath;
-                                            }
-                                        }
-                                    } catch (NoSuchMethodException e) {
-                                        e.printStackTrace();
-                                    } catch (InvocationTargetException e) {
-                                        e.printStackTrace();
-                                    } catch (IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    /**
+//     * 获取FileProvider path
+//     * fileprovider 转 file 绝对路径
+//     */
+//    private static String getFPUriToPath(Uri uri) {
+//        try {
+//            List<PackageInfo> packs = OotbConfig.app().getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS);
+//            if (packs != null) {
+//                String fileProviderClassName = FileProvider.class.getName();
+//                for (PackageInfo pack : packs) {
+//                    ProviderInfo[] providers = pack.providers;
+//                    if (providers != null) {
+//                        for (ProviderInfo provider : providers) {
+//                            if (uri.getAuthority().equals(provider.authority)) {
+//                                if (provider.name.equalsIgnoreCase(fileProviderClassName)) {
+//                                    Class<FileProvider> fileProviderClass = FileProvider.class;
+//                                    try {
+//                                        Method getPathStrategy = fileProviderClass.getDeclaredMethod("getPathStrategy", Context.class, String.class);
+//                                        getPathStrategy.setAccessible(true);
+//                                        Object invoke = getPathStrategy.invoke(null, OotbConfig.app(), uri.getAuthority());
+//                                        if (invoke != null) {
+//                                            String PathStrategyStringClass = FileProvider.class.getName() + "$PathStrategy";
+//                                            Class<?> PathStrategy = Class.forName(PathStrategyStringClass);
+//                                            Method getFileForUri = PathStrategy.getDeclaredMethod("getFileForUri", Uri.class);
+//                                            getFileForUri.setAccessible(true);
+//                                            Object invoke1 = getFileForUri.invoke(invoke, uri);
+//                                            if (invoke1 instanceof File) {
+//                                                String filePath = ((File) invoke1).getAbsolutePath();
+//                                                return filePath;
+//                                            }
+//                                        }
+//                                    } catch (NoSuchMethodException e) {
+//                                        e.printStackTrace();
+//                                    } catch (InvocationTargetException e) {
+//                                        e.printStackTrace();
+//                                    } catch (IllegalAccessException e) {
+//                                        e.printStackTrace();
+//                                    } catch (ClassNotFoundException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    break;
+//                                }
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 }

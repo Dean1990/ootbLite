@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.provider.Settings;
-import android.support.v4.content.FileProvider;
 
 import com.deanlib.ootblite.OotbConfig;
 import com.deanlib.ootblite.R;
@@ -145,6 +144,21 @@ public class AppUtils {
         Uri packageURI = Uri.parse("package:"+OotbConfig.app().getPackageName());//设置包名，可直接跳转当前软件的设置页面
         Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
         activity.startActivityForResult(intent, REQ_CODE_UNKNOWN_APP_SOURCES);
+    }
+
+    /**
+     * 分享图片
+     */
+    public static void shareImage(Activity activity, Uri uri,String dialogTitle){
+        if (uri!=null) {
+            Intent share_intent = new Intent();
+            share_intent.setAction(Intent.ACTION_SEND);//设置分享行为
+            share_intent.setType("image/*");  //设置分享内容的类型
+            share_intent.putExtra(Intent.EXTRA_STREAM,uri);
+            //创建分享的Dialog
+            share_intent = Intent.createChooser(share_intent, dialogTitle);
+            activity.startActivity(share_intent);
+        }
     }
 
 }
