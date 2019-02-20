@@ -25,6 +25,20 @@ import java.io.InputStream;
 
 public class ImageUtils {
 
+
+    /**
+     * 将图片存到本地
+     */
+    public static boolean saveBitmapSyn(Bitmap bm, File f) throws Exception {
+
+        FileOutputStream out = new FileOutputStream(f);
+        boolean b = bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+        out.flush();
+        out.close();
+        return b;
+
+    }
+
     /**
      * 保存Bitmap
      *
@@ -33,7 +47,7 @@ public class ImageUtils {
      * @param name
      * @param cb
      */
-    public static void saveImageFile(final Bitmap bitmap, final File dir, final String name, final FileUtils.FileCallback cb) {
+    public static void saveBitmap(final Bitmap bitmap, final File dir, final String name, final FileUtils.FileCallback cb) {
         new AsyncTask<File, Void, File>() {
 
             @Override

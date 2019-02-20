@@ -199,40 +199,26 @@ public class FileUtils {
     }
 
     public static File createTempFile(String suffix){
-        return createTempFile(new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()),suffix);
+        return createTempFile(null,suffix);
     }
 
     /**
      * 创建临时文件
      *
-     * @param name
-     * @param suffix
+     * @param prefix 前缀
+     * @param suffix 后缀
      * @return
      */
-    public static File createTempFile(String name, String suffix) {
-
-        if (TextUtils.isEmpty(name)) {
-
-            name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-
-        }
+    public static File createTempFile(String prefix, String suffix) {
 
         File image = null;
         try {
-            image = File.createTempFile(name,  /* prefix */
-                    suffix     /* directory */
-            );
+            image = File.createTempFile(prefix, suffix);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return image;
-
-//        if (image == null)
-//            return null;
-        // Save a file: path for use with ACTION_VIEW intents
-        //return Uri.fromFile(image);
 
     }
 
