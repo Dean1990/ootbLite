@@ -186,4 +186,15 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 重启
+     * @param activity
+     */
+    public static void restart(Activity activity){
+        Intent intent = activity.getPackageManager().getLaunchIntentForPackage(activity.getPackageName());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.startActivity(intent);
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
 }
