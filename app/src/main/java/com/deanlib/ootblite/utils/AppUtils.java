@@ -11,6 +11,10 @@ import android.provider.Settings;
 import com.deanlib.ootblite.OotbConfig;
 import com.deanlib.ootblite.R;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 /**
  * 应用操作相关
  * 打开，分享等
@@ -195,6 +199,32 @@ public class AppUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivity(intent);
         android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+
+    /**
+     * 关闭 Android P 对使用非SDK API的提示框
+     * 治标不治本，但是有些第三方类库也是我们不能左右的
+     */
+    private void closeAPICompatibilityDialog(){
+        try{
+            Class clazz = Class.forName("android.content.pm.PackageParser$Package");
+            Constructor declaredConstructor = clazz.getDeclaredConstructor(String.class);
+            declaredConstructor.setAccessible(true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            Class clazz2 = Class.forName("android.app.ActivityThread");
+            Method declaredMethod = clazz2.getDeclaredMethod("currentActivityThread");
+            declaredMethod.setAccessible(true);
+            Object invoke = declaredMethod.invoke(null);
+            Field mHiddenApiWarningShown = clazz2.getDeclaredField("mHiddenApiWarningShown");
+            mHiddenApiWarningShown.setAccessible(true);
+            mHiddenApiWarningShown.setBoolean(invoke,true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
