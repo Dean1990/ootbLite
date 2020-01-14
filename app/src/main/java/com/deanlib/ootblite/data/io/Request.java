@@ -262,7 +262,7 @@ public abstract class Request {
             }else if (params.getMethod() == HttpMethod.POST){
                 cancelable = OotbConfig.http().post(params, xUtilsCalback);
             }else {
-                cancelable = OotbConfig.http().reqeust(params.getMethod(),params,xUtilsCalback);
+                cancelable = OotbConfig.http().request(params.getMethod(),params,xUtilsCalback);
             }
 
         } else {
