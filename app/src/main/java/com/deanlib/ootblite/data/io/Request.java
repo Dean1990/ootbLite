@@ -259,8 +259,10 @@ public abstract class Request {
             //默认POST请求 可以通过自定义IRequestParam改写默认设置
             if (params.getMethod() == HttpMethod.GET){
                 cancelable = OotbConfig.http().get(params,xUtilsCalback);
-            }else {
+            }else if (params.getMethod() == HttpMethod.POST){
                 cancelable = OotbConfig.http().post(params, xUtilsCalback);
+            }else {
+                cancelable = OotbConfig.http().reqeust(params.getMethod(),params,xUtilsCalback);
             }
 
         } else {
