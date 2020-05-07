@@ -154,7 +154,7 @@ public class DLog {
 
 				try {
 
-					File file = new File(dirFile, sdf1.format(new Date(System.currentTimeMillis())) + "");
+					File file = new File(dirFile, sdf.format(new Date(System.currentTimeMillis())) + ".log");
 
 					return new FileWriter(file);
 
